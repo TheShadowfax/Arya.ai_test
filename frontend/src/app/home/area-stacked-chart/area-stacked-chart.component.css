@@ -1,0 +1,30 @@
+.chart__wrapper {
+    height: inherit;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    place-items: center;
+}
+
+.child {
+    flex: 1 1 450px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.child__1 {
+    flex: 1 1 850px;
+    margin: 5px;
+}
+
+.inner__div {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 15px;
+}

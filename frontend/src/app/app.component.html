@@ -1,0 +1,31 @@
+<div *ngIf="loginService.state$ | async as vm">
+    <div class="nav__bar card" *ngIf="vm.userLoggedIn">
+        <div class="a-left">
+            <p routerLink="/home" style="width: fit-content;cursor: pointer;">Logo</p>
+        </div>
+        <div class="a-right">
+            <!-- <div class="notif"><i class="far fa-bell"></i></div> -->
+            <div class="drop" (mouseenter)=enter() (mouseleave)=exit() *ngIf="userService.state$ |async as uvm"> <img
+                    [src]="uvm.dp?decode(uvm.dp):'assets/images/login.svg'" width="25px" height="25px">
+                <h4>current user</h4>
+            </div>
+            <div class="card dropdown-content" id="dropdown-content" (mouseenter)=enter() (mouseleave)=exit()>
+                <li class="ag-list" routerLink="/profile"> <a><i class="fas"></i> &nbsp;Profile </a></li>
+                <li class="ag-list" (click)="logOut()"> <a href="/"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
+                </li>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div style="width: 100%;">
+        <div *ngIf="vm.userLoggedIn">
+            <h2 *ngIf="menu !== IMenu.PROFILE">
+                {{menu | titlecase}}</h2>
+            <h2 *ngIf="menu === IMenu.PROFILE">
+                <img src="assets/images/home.svg" routerLink="/home" style="cursor: pointer;">
+                &nbsp;/{{menu |titlecase}}
+            </h2>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

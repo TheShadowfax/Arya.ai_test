@@ -1,0 +1,123 @@
+<!-- <div class="nav">
+    <i><img src="assets/images/home.svg" alt="Home"></i>
+    <h2>/Profile</h2>
+</div> -->
+
+<form [formGroup]="profileForm" (submit)="updateUserDetails()" class="parent">
+    <div class="card" *ngIf="userService.state$ | async as vm">
+
+        <section class="parent">
+            <section class="child">
+                <h3>Public Avatar</h3>
+                <p>You can change your avatar here or remove the current avatar</p>
+            </section>
+            <section class="child parent">
+                <div>
+                    <img [src]="profileForm.controls.dp.value?decode(profileForm.controls.dp.value):'assets/images/login.svg'"
+                        alt="login" width="200px"><br>
+                    <span class=" caption error" *ngIf="profileForm.controls.dp.value" (click)="removeDP()">Remove
+                        avtar</span>
+                </div>
+                <div>
+                    <h5>Upload new avtar</h5>
+                    <div>
+                        <input type="file" name="file" id="file" (change)="onFileInput($event)" style="display: none;"
+                            #fileUpload accept="image/jpeg" data-max-size="20000">
+                        <button class="primary__80" type="button" (click)="fileUpload.click()">Upload
+                            Image</button>&nbsp;
+                        <span>{{file?.name || 'No file choosen'}}</span>
+                        <br><br>
+                        <span class="caption">The maximum file size allowed is 200KB.</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <br>
+        <hr>
+        <section class="parent">
+            <section class="child">
+                <h3>Main Settings</h3>
+                <p>This information will appear on your profile</p>
+            </section>
+            <section class="child parent">
+
+                <div class="input__field right-addon">
+                    <label for="email" class="body__2">Email Address</label>
+                    <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                    <input type="email" disabled name="email" id="email" placeholder="example@mail.com"
+                        formControlName="email">
+                </div>
+                <div class="input__field right-addon">
+                    <label for="user_id" class="body__2">User Id</label>
+                    <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                    <input type="number" disabled="user_id" id="user_id" placeholder="000000" formControlName="id">
+                </div>
+                <div class="input__field right-addon">
+                    <label for="first_name" class="body__2">First Name</label>
+                    <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                    <input
+                        [ngClass]="{'input__invalid': (vm.error && !vm.loading) || ((profileForm.controls.firstName.touched || profileForm.controls.firstName.dirty) && profileForm.controls.firstName.errors)}"
+                        type="text" name="first_name" id="first_name" placeholder="first " formControlName="firstName">
+
+                    <span class="invalid__feedback"
+                        *ngIf="(profileForm.controls.firstName.touched || profileForm.controls.firstName.dirty) && profileForm.controls.firstName.errors;else else1">
+                        Please enter a valid name
+                    </span>
+                </div>
+
+                <div class="input__field right-addon">
+                    <label for="last_name" class="body__2">Last Name</label>
+                    <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                    <input
+                        [ngClass]="{'input__invalid': (vm.error && !vm.loading) || ((profileForm.controls.lastName.touched || profileForm.controls.lastName.dirty) && profileForm.controls.lastName.errors)}"
+                        type="text" name="last_name" id="last_name" placeholder="last " formControlName="lastName">
+                    <span class="invalid__feedback"
+                        *ngIf="(profileForm.controls.lastName.touched || profileForm.controls.lastName.dirty) && profileForm.controls.lastName.errors;else else1">
+                        Please enter a valid name
+                    </span>
+
+                </div>
+
+                <div class="input__field right-addon">
+                    <label for="password" class="body__2">Password</label>
+                    <!-- <fa-icon [icon]="passwordIcom" class="glyphicon" (click)="togglePassword()" #password> </fa-icon> -->
+                    <input
+                        [ngClass]="{'input__invalid':( vm.error && !vm.loading) || (profileForm.controls.password.touched || profileForm.controls.password.dirty) && (profileForm.controls.password.errors || profileForm.controls.password.value !==profileForm.controls.confirmPassword.value)}"
+                        [type]="true?'text':'password'" name="password" id="password" placeholder="******"
+                        formControlName="password">
+                    <span class="invalid__feedback"
+                        *ngIf="(profileForm.controls.password.touched || profileForm.controls.password.dirty) && (profileForm.controls.password.errors || profileForm.controls.password.value !==profileForm.controls.confirmPassword.value);else else1">
+                        {{profileForm.controls.password.value !==profileForm.controls.confirmPassword.value?'Password doesnt match':'Please enter a valid password'}}
+                    </span>
+
+                </div>
+                <div class="input__field right-addon">
+                    <label for="confirm" class="body__2">Confirm Password</label>
+                    <!-- <fa-icon [icon]="passwordIcom" class="glyphicon" (click)="togglePassword()" #password> </fa-icon> -->
+                    <input
+                        [ngClass]="{'input__invalid': (vm.error && !vm.loading) || ((profileForm.controls.confirmPassword.touched || profileForm.controls.confirmPassword.dirty) && (profileForm.controls.confirmPassword.errors))}"
+                        [type]="true?'text':'password'" name="confirm" id="confirm" placeholder="******"
+                        formControlName="confirmPassword">
+                    <span class="invalid__feedback"
+                        *ngIf="(profileForm.controls.confirmPassword.touched || profileForm.controls.confirmPassword.dirty) && (profileForm.controls.confirmPassword.errors);else else1">
+                        Please enter a valid password
+                    </span>
+
+                </div>
+
+                <button type="submit" [ngClass]="{'loading': vm.loading}"
+                    [disabled]="vm.loading || !profileForm.dirty ||profileForm.invalid || profileForm.controls.password.value !==profileForm.controls.confirmPassword.value">Update
+                    Details</button>
+                <span class="invalid__feedback" *ngIf="vm.error && profileForm.dirty;else else1">
+                    Coudn't update the details, please try after sometime
+                </span>
+
+
+
+
+            </section>
+        </section>
+
+    </div>
+    <ng-template #else1> &nbsp; </ng-template>
+</form>

@@ -1,0 +1,28 @@
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100vh;
+}
+
+section {
+    /* background: #ffffff; */
+    flex: 1 1 150px;
+}
+
+.login__screen {
+    display: grid;
+    place-items: center;
+}
+
+.login__div {
+    display: grid;
+    gap: 7px;
+}
+
+:root {
+    color: #ffffff !important;
+}
+button:disabled{
+    background: var(--primary__30);
+}

@@ -1,0 +1,73 @@
+.card {
+    padding: 15px;
+    color: var(--black-100);
+}
+
+/* .parent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
+} */
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.child {
+    flex: 1 1 350px;
+    margin: 5px;
+}
+
+.child * {
+    margin: 7px;
+}
+
+.error {
+    cursor: pointer;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+}
+
+i {
+    align-self: center;
+}
+
+.invalid__feedback{
+    color: var(--error__light);
+    font-size: 13px;
+    margin: 0px !important;
+    place-self: center;
+}
+
+.input__field{
+    display: grid;
+}
+
+button[type=submit]{
+    background: var(--success) !important;
+}
+
+button:disabled{
+    background: var(--black-60) !important;
+}
+
+h3{
+    color: var(--primary__100) !important;
+}
+
+input #file-upload-button{
+    background: var(--primary__100) !important;
+} 
+
+button[type=submit].loading{
+    background: var(--warning__light) !important;
+}

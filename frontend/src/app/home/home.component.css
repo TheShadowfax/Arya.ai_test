@@ -1,0 +1,47 @@
+.card {
+    
+    padding: 15px;
+    color: var(--black-100);
+}
+
+
+/* .parent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.child {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
+} */
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    place-items: center;
+}
+
+.child {
+    flex: 1 1 350px;
+    margin: 5px;
+}
+
+.child * {
+    margin: 5px;
+}
+
+.error {
+    cursor: pointer;
+}
+
+input {
+    background: #ffffff !important;
+}
+
+.grap__area{
+    /* height: 70vh !important; */
+    flex: 1 1 1050px;
+    margin: 5px;
+}

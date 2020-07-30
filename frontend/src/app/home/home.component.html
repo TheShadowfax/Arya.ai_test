@@ -1,0 +1,26 @@
+<!-- <h2>Dashboard</h2> -->
+
+<form [formGroup]="dateForm">
+    <div class="card">
+        <section class="parent">
+            <div class="input__field right-addon child">
+                <label for="email" class="body__2">From Date</label><br>
+                <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                <input type="date" name="email" id="email" formControlName="from">
+            </div>
+            <div class="input__field right-addon child ">
+                <label for="email" class="body__2">To Date</label><br>
+                <!-- <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon> -->
+                <input type="date" name="email" id="email" formControlName="to">
+            </div>
+            <!-- <div class="child"><button style="background: var(--primary__100);">Submit</button></div> -->
+        </section>
+        <section class="parent ">
+            <div class="child grap__area">
+                <app-area-stacked-chart></app-area-stacked-chart>
+            </div>
+        </section>
+
+
+    </div>
+</form>

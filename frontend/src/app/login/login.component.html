@@ -1,0 +1,33 @@
+<div class="parent" *ngIf="loginService.state$ | async as vm">
+    <section class="login__screen">
+        <img src="assets/images/login.svg" alt="Login" width="700vw">
+    </section>
+    <section class="login__screen">
+
+        <form [formGroup]="userLoginForm" (submit)="attempLogin()">
+            <div class="login__div">
+                <h2>Login</h2>
+                <div class="input__field right-addon">
+                    <label for="email" class="body__2">Email Address</label><br>
+                    <fa-icon [icon]="emailIcon" class="glyphicon"></fa-icon>
+                    <input [ngClass]="{'input__invalid': vm.error && !vm.loading}" type="email" name="email" id="email"
+                        placeholder="example@mail.com" formControlName="email">
+                </div>
+                <br>
+                <div class="input__field right-addon">
+                    <label for="password" class="body__2">Password</label><br>
+                    <fa-icon [icon]="passwordIcom" class="glyphicon" (click)="togglePassword()" #password> </fa-icon>
+                    <input [ngClass]="{'input__invalid': vm.error && !vm.loading}" formControlName="password"
+                        [type]="showPassowrd?'text':'password'" name="password" id="password" placeholder="******">
+                </div>
+                <br>
+                <button class="primary__100" type="submit" [disabled]="userLoginForm.invalid || vm.loading">Login</button>
+                <span class=" caption error" *ngIf="vm.error && !vm.loading">Invalid username/password</span>
+
+            </div>
+        </form>
+
+
+
+    </section>
+</div>

@@ -1,0 +1,31 @@
+<div class="chart__wrapper" *ngIf="statsService.state$ | async as vm">
+    <div class="chart parent">
+        <div class="child__1 ">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [plugins]="lineChartPlugins" style="width: 90% !important;">
+            </canvas>
+        </div>
+        <div class="stats child">
+            <div>
+                <h4>Total</h4>
+                <h2 style="color: var(--primary__100);">{{stats.total}}</h2>
+            </div>
+            <div class="inner__div">
+
+                <div>
+                    <h4>Accepted</h4>
+                    <h2 style="color: var(--success);">{{stats.accepted}}</h2>
+                </div>
+                <div>
+                    <h4>Rejected</h4>
+                    <h2 style="color: var(--warning);">{{stats.rejected}}</h2>
+                </div>
+                <div>
+                    <h4>Error</h4>
+                    <h2 style="color: var(--error);">{{stats.error}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
